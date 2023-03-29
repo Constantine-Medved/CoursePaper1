@@ -1,24 +1,25 @@
 public class Main {
-    public static void displayEmployeesList(Employee[] employeeData) {
+    private static Employee[] employeeData = new Employee[10];
+    public static void displayEmployeesList() {
         System.out.println("==========> Список всех сотрудников компании: ");
         for (Employee index : employeeData) {
             System.out.println(index);
         }
     }
-    public static void displayEmployeesFullNames(Employee[] employeeData) {
+    public static void displayEmployeesFullNames() {
         System.out.println("==========> Ф.И.О. всех сотрудников компании: ");
         for (Employee index : employeeData) {
             System.out.println(index.getSurname() + " " + index.getName() + " " + index.getPatronymicName());
         }
     }
-    public static double sumSalary(Employee[] employeeData) {
+    public static double sumSalary() {
         double sum = 0;
         for (Employee index : employeeData) {
             sum += index.getSalary();
         }
         return sum;
     }
-    public static void minSalary(Employee[] employeeData) {
+    public static void minSalary() {
         int index = 0;
         for (int i = 1; i < employeeData.length; i++) {
             if (employeeData[index].getSalary() > employeeData[i].getSalary())
@@ -26,7 +27,7 @@ public class Main {
         }
         System.out.println(employeeData[index]);
     }
-    public static void maxSalary(Employee[] employeeData) {
+    public static void maxSalary() {
         int index = 0;
         for (int i = 1; i < employeeData.length; i++) {
             if (employeeData[index].getSalary() < employeeData[i].getSalary())
@@ -34,11 +35,10 @@ public class Main {
         }
         System.out.println(employeeData[index]);
     }
-    public static double averageSalary(Employee[] employeeData) {
-        return (sumSalary(employeeData) / employeeData.length);
+    public static double averageSalary() {
+        return (sumSalary() / employeeData.length);
     }
     public static void main(String[] args) {
-        Employee[] employeeData = new Employee[10];
         employeeData[0] = new Employee("Медведь", "Константин", "Александрович", 20_000, 1);
         employeeData[1] = new Employee("Колосов", "Алексей", "Андреевич", 100_000, 2);
         employeeData[2] = new Employee("Сергеев", "Дмитрий", "Иванович", 100_000, 2);
@@ -57,19 +57,19 @@ public class Main {
         employeeData[5].setDepartment(1);// Перевод в другой отдел Соколовой А.С. из отдела "3" переведена в отдел "1"
         //НИЖЕ РЕАЛИЗАЦИЯ ПОСТАВЛЕННЫХ ЗАДАЧ:
         // a. Получить список всех сотрудников со всеми имеющимися по ним данными.
-        displayEmployeesList(employeeData);
+        displayEmployeesList();
         // b. Посчитать сумму затрат на зарплаты в месяц.
-        System.out.println("==========> Сумма затрат на зарплаты в месяц: " + sumSalary(employeeData) + " рублей");
+        System.out.println("==========> Сумма затрат на зарплаты в месяц: " + sumSalary() + " рублей");
         // c. Найти сотрудника с минимальной зарплатой.
         System.out.println("==========> Минимальная зарплата у сотрудника:");
-        minSalary(employeeData);
+        minSalary();
         // d. Найти сотрудника с максимальной зарплатой.
         System.out.println("==========> Максимальная зарплата у сотрудника:");
-        maxSalary(employeeData);
+        maxSalary();
         // e. Подсчитать среднее значение зарплат (можно использовать для этого метод из пункта b).
-        System.out.println("==========> Средняя зарплата сотрудников " + averageSalary(employeeData));
+        System.out.println("==========> Средняя зарплата сотрудников " + averageSalary());
         // f. Получить Ф. И. О. всех сотрудников (вывести в консоль).
-        displayEmployeesFullNames(employeeData);
+        displayEmployeesFullNames();
         // Вызываем Геттеры в рамках проверки всех полей : узать персональный Id и в каком отделе работает сотрудник Свидригайлов Л.Г.
         System.out.println("==========> Свидригайлов Лев Глебович : Id - " + employeeData[7].getId() + "; отдел " + employeeData[7].getDepartment() );
     }
